@@ -1,6 +1,5 @@
-import path from 'path';
-
-export default {
+let path = require('path');
+module.exports = {
   debug: true,
   devtool: 'inline-source-map',
   noInfo: false,
@@ -16,7 +15,7 @@ export default {
   plugins: [],
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
+      //{ test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
       { test: /\.css$/, loaders: ['style', 'css'] }
     ]
   }
