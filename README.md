@@ -1,1 +1,1 @@
-Javascript boilerplate
+Javascript Boilerplate
