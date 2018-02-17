@@ -1,16 +1,13 @@
-let express = require('express');
-let path = require('path');
-//let open = require('open');
-let webpack = require('webpack');
-let config = require('../webpack.config.dev');
-/*
 import express from 'express';
 import path from 'path';
 import open from 'open';
-*/
+import webpack from 'webpack';
+import config from '../webpack.config.dev';
+
 /* eslint-disable no-console */
-let port = 3000;
-let app = express();
+
+const port = 3000;
+const app = express();
 const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -18,14 +15,21 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../src/index.html'))
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '../src/index.html'));
 });
 
-app.listen(port, function (err) {
+app.get('/users', function(req, res) {
+  // Hard coding for simplicity. Pretend this hits a real database
+  res.json([
+    {"id":1,"firstName":"Saptadeep","lastName":"Bhowmik","email":"saptadeepbhowmik@gmail.com"},{"id":2,"firstName":"Soumyadeep","lastName":"Bhowmik","email":""}
+  ]);
+});
+
+app.listen(port, function(err) {
   if (err) {
     console.log(err);
   } else {
-    console.log('Server is running');
+    open('http://localhost:' + port);
   }
 });
